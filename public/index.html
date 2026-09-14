@@ -1,12 +1,145 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Home-page do sistema Lumia, gestão para clínicas de estética, laser e emagrecimento.">
+    <title>Lumia - Gestão para clínicas de estética</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    
+    <!-- Cabeçalho: nome do site e barra de navegação -->
+    <header class="cabecalho" id="inicio">
+        <div class="container cabecalho-conteudo">
+            <a class="logo" href="#inicio">Lumia<span class="logo-ponto">.</span></a>
+            <nav class="menu" aria-label="Menu principal">
+                <a href="#sobre">Sobre</a>
+                <a href="#recursos">Recursos</a>
+                <a href="#setores">Setores</a>
+                <a href="#contato">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Banner principal com o texto introdutório -->
+        <div class="container banner" id="sobre">
+            <div class="banner-texto">
+                <span class="banner-etiqueta">Gestão para clínicas de estética</span>
+                <h1>Sua clínica mais organizada, do agendamento ao financeiro</h1>
+                <p>A Lumia é uma organização que desenvolve um sistema de gestão para clínicas de estética, laser e emagrecimento. A plataforma reúne agenda, contatos, vendas e controle financeiro em um só lugar.</p>
+                <p>Nesta home-page, você conhece os principais recursos do sistema e os setores da clínica que eles ajudam a organizar.</p>
+                <div class="banner-botoes">
+                    <a class="botao" href="#recursos">Conheça os recursos</a>
+                    <a class="botao botao-contorno" href="#contato">Fale conosco</a>
+                </div>
+            </div>
+            <img class="banner-imagem" src="img/banner.jpg" alt="Notebook aberto sobre uma mesa de madeira, ao lado de um caderno com esboços de páginas" width="1000" height="1100">
+        </div>
+
+        <!-- Seção secundária: cards com os recursos do sistema -->
+        <section class="secao" id="recursos">
+            <div class="container">
+                <h2 class="secao-titulo">Recursos do sistema</h2>
+                <p class="secao-descricao">Três recursos da plataforma que ajudam na rotina de uma clínica de estética.</p>
+                <div class="cards">
+                    <article class="card">
+                        <img src="img/agenda.jpg" alt="Notebook aberto sobre uma mesa de madeira ao lado de uma xícara" width="720" height="480">
+                        <div class="card-conteudo">
+                            <h3>Agenda e sessões</h3>
+                            <p>Organização dos horários e acompanhamento dos atendimentos e das sessões de cada cliente.</p>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="img/contatos.jpg" alt="Mesa vista de cima com revistas, celular, lápis e teclado" width="720" height="480">
+                        <div class="card-conteudo">
+                            <h3>Contatos e vendas</h3>
+                            <p>Cadastro de contatos e acompanhamento das oportunidades comerciais da clínica.</p>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="img/financeiro.jpg" alt="Mesa escura com monitor, tablet, teclado e óculos" width="720" height="480">
+                        <div class="card-conteudo">
+                            <h3>Gestão financeira</h3>
+                            <p>Controle financeiro e relatórios para apoiar as decisões da administração.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Setores da clínica atendidos pelos recursos -->
+        <section class="secao secao-clara" id="setores">
+            <div class="container">
+                <h2 class="secao-titulo">Setores atendidos</h2>
+                <p class="secao-descricao">Neste projeto, os recursos foram agrupados em três setores de uma clínica.</p>
+                <div class="setores">
+                    <article class="setor">
+                        <span class="setor-numero">01</span>
+                        <h3>Recepção</h3>
+                        <p>Agenda de atendimentos e organização dos contatos dos clientes.</p>
+                    </article>
+                    <article class="setor">
+                        <span class="setor-numero">02</span>
+                        <h3>Comercial</h3>
+                        <p>Relacionamento com os clientes e acompanhamento das vendas.</p>
+                    </article>
+                    <article class="setor">
+                        <span class="setor-numero">03</span>
+                        <h3>Administração</h3>
+                        <p>Controle financeiro e consulta de relatórios da clínica.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contato com formulário demonstrativo -->
+        <section class="secao" id="contato">
+            <div class="container contato">
+                <div class="contato-texto">
+                    <h2 class="secao-titulo">Contato</h2>
+                    <p>Quer conhecer melhor a Lumia? Preencha o formulário ou acesse o <a href="https://www.lumiaclin.com.br/">site oficial</a> para falar com a equipe.</p>
+                </div>
+                <form class="formulario" action="#aviso" method="get">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" placeholder="voce@exemplo.com" required>
+                    <button class="botao" type="submit">Simular envio</button>
+                    <p class="formulario-aviso" id="aviso">Formulário demonstrativo, sem envio de mensagens.</p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé: informações institucionais e redes sociais -->
+    <footer class="rodape">
+        <div class="container rodape-conteudo">
+            <div class="rodape-marca">
+                <a class="logo" href="#inicio">Lumia<span class="logo-ponto">.</span></a>
+                <p>Sistema de gestão para clínicas de estética, laser e emagrecimento.</p>
+            </div>
+            <div class="rodape-coluna">
+                <h2 class="rodape-titulo">Institucional</h2>
+                <ul>
+                    <li><a href="https://www.lumiaclin.com.br/">Site oficial</a></li>
+                    <li><a href="https://www.lumiaclin.com.br/funcionalidades">Funcionalidades</a></li>
+                    <li><a href="https://www.lumiaclin.com.br/blog">Blog</a></li>
+                </ul>
+            </div>
+            <div class="rodape-coluna">
+                <h2 class="rodape-titulo">Redes sociais</h2>
+                <ul>
+                    <li><a href="https://www.instagram.com/lumiaclin/">Instagram</a></li>
+                    <li><a href="https://www.linkedin.com/company/lumiaclin/">LinkedIn</a></li>
+                    <li><a href="https://wa.me/5531983165920">WhatsApp</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container rodape-creditos">
+            <p>Projeto acadêmico de Vinícius Alvim Silveira - Matrícula 1651273</p>
+            <p>Desenvolvimento de Interfaces Web - Semana 5</p>
+        </div>
+    </footer>
 </body>
 </html>
