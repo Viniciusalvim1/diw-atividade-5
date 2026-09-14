@@ -1,0 +1,411 @@
+/* ==========================================================================
+   Lumia - Home-page
+   Folha de estilos da página (CSS puro, sem frameworks)
+   ========================================================================== */
+
+/* ---------- Variáveis: padrão de cores, fontes e espaçamentos ---------- */
+:root {
+    /* Cores */
+    --cor-primaria: #245c40;
+    --cor-primaria-escura: #173d2a;
+    --cor-destaque: #c1ed83;
+    --cor-fundo: #f1f5f2;
+    --cor-fundo-claro: #e3ede5;
+    --cor-branca: #ffffff;
+    --cor-texto: #26312a;
+    --cor-texto-suave: #56635b;
+    --cor-texto-rodape: #cfdcd3;
+    --cor-borda: #d8e2da;
+
+    /* Fontes */
+    --fonte-titulo: "Poppins", Arial, sans-serif;
+    --fonte-texto: "Open Sans", Arial, sans-serif;
+
+    /* Espaçamentos */
+    --espaco-pequeno: 8px;
+    --espaco-medio: 16px;
+    --espaco-grande: 32px;
+    --espaco-secao: 64px;
+    --espaco-lateral: 20px;
+
+    /* Medidas e efeitos */
+    --largura-maxima: 1120px;
+    --raio: 12px;
+    --sombra: 0 6px 20px rgba(23, 61, 42, 0.08);
+}
+
+/* ---------- Estilo geral ---------- */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: var(--fonte-texto);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--cor-texto);
+    background-color: var(--cor-fundo);
+}
+
+h1,
+h2,
+h3 {
+    margin: 0 0 var(--espaco-medio);
+    font-family: var(--fonte-titulo);
+    line-height: 1.2;
+    color: var(--cor-primaria-escura);
+}
+
+p {
+    margin: 0 0 var(--espaco-medio);
+}
+
+a {
+    color: var(--cor-primaria);
+}
+
+/* Contorno visível para quem navega pelo teclado */
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--cor-primaria);
+    outline-offset: 3px;
+}
+
+.cabecalho a:focus-visible,
+.rodape a:focus-visible {
+    outline-color: var(--cor-destaque);
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Largura padrão do conteúdo, usada em todas as partes da página */
+.container {
+    width: 100%;
+    max-width: var(--largura-maxima);
+    margin: 0 auto;
+    padding: 0 var(--espaco-lateral);
+}
+
+/* ---------- Cabeçalho e menu ---------- */
+.cabecalho {
+    padding: var(--espaco-medio) 0;
+    background-color: var(--cor-primaria);
+    text-align: center;
+}
+
+.logo {
+    font-family: var(--fonte-titulo);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--cor-branca);
+    text-decoration: none;
+}
+
+.logo-ponto {
+    color: var(--cor-destaque);
+}
+
+.menu a {
+    display: inline-block;
+    margin: var(--espaco-pequeno) 10px 0;
+    padding-bottom: 2px;
+    border-bottom: 2px solid transparent;
+    color: var(--cor-branca);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.menu a:hover {
+    border-bottom-color: var(--cor-destaque);
+    color: var(--cor-destaque);
+}
+
+/* ---------- Banner principal ---------- */
+.banner {
+    padding-top: 40px;
+    padding-bottom: var(--espaco-secao);
+}
+
+.banner-etiqueta {
+    display: inline-block;
+    margin-bottom: var(--espaco-medio);
+    padding: 4px 14px;
+    border-radius: 20px;
+    background-color: var(--cor-fundo-claro);
+    color: var(--cor-primaria);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.banner h1 {
+    font-size: 32px;
+}
+
+.banner-texto p {
+    color: var(--cor-texto-suave);
+    font-size: 17px;
+}
+
+.banner-botoes .botao {
+    margin: var(--espaco-pequeno) var(--espaco-pequeno) 0 0;
+}
+
+.banner-imagem {
+    width: 100%;
+    height: 280px;
+    margin-top: var(--espaco-grande);
+    border-radius: var(--raio);
+    object-fit: cover;
+    box-shadow: var(--sombra);
+}
+
+/* ---------- Botões ---------- */
+.botao {
+    display: inline-block;
+    padding: 12px 28px;
+    border: 2px solid var(--cor-primaria);
+    border-radius: 30px;
+    background-color: var(--cor-primaria);
+    color: var(--cor-branca);
+    font-family: var(--fonte-titulo);
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.5;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.botao:hover {
+    border-color: var(--cor-primaria-escura);
+    background-color: var(--cor-primaria-escura);
+}
+
+.botao-contorno {
+    background-color: transparent;
+    color: var(--cor-primaria);
+}
+
+.botao-contorno:hover {
+    border-color: var(--cor-primaria);
+    background-color: var(--cor-primaria);
+    color: var(--cor-branca);
+}
+
+/* ---------- Seções ---------- */
+.secao {
+    padding: var(--espaco-secao) 0;
+    background-color: var(--cor-branca);
+}
+
+.secao-clara {
+    background-color: var(--cor-fundo-claro);
+}
+
+.secao-titulo {
+    font-size: 28px;
+}
+
+/* Linha decorativa abaixo dos títulos das seções */
+.secao-titulo::after {
+    content: "";
+    display: block;
+    width: 56px;
+    height: 4px;
+    margin-top: 12px;
+    border-radius: 2px;
+    background-color: var(--cor-primaria);
+}
+
+.secao-descricao {
+    max-width: 640px;
+    margin-bottom: var(--espaco-grande);
+    color: var(--cor-texto-suave);
+}
+
+/* ---------- Cards dos recursos ---------- */
+.card {
+    margin-bottom: 24px;
+    overflow: hidden;
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio);
+    background-color: var(--cor-branca);
+    box-shadow: var(--sombra);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(23, 61, 42, 0.14);
+}
+
+.card img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+}
+
+.card-conteudo {
+    padding: 20px 24px 24px;
+}
+
+.card h3 {
+    margin-bottom: var(--espaco-pequeno);
+    font-size: 20px;
+}
+
+.card p {
+    margin: 0;
+    color: var(--cor-texto-suave);
+}
+
+/* ---------- Setores ---------- */
+.setor {
+    margin-bottom: var(--espaco-medio);
+    padding: 24px;
+    border-top: 4px solid var(--cor-primaria);
+    border-radius: var(--raio);
+    background-color: var(--cor-branca);
+}
+
+.setor-numero {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 12px;
+    border-radius: 50%;
+    background-color: var(--cor-fundo-claro);
+    color: var(--cor-primaria);
+    font-family: var(--fonte-titulo);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 40px;
+    text-align: center;
+}
+
+.setor h3 {
+    margin-bottom: var(--espaco-pequeno);
+    font-size: 20px;
+}
+
+.setor p {
+    margin: 0;
+    color: var(--cor-texto-suave);
+}
+
+/* ---------- Contato e formulário ---------- */
+.contato-texto p {
+    color: var(--cor-texto-suave);
+}
+
+.formulario {
+    padding: 24px;
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio);
+    background-color: var(--cor-fundo);
+    box-shadow: var(--sombra);
+}
+
+.formulario label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.formulario input {
+    width: 100%;
+    margin-bottom: var(--espaco-medio);
+    padding: 12px 14px;
+    border: 1px solid #b9c7bd;
+    border-radius: 8px;
+    background-color: var(--cor-branca);
+    color: var(--cor-texto);
+    font: inherit;
+}
+
+.formulario input:focus {
+    border-color: var(--cor-primaria);
+    outline: 2px solid var(--cor-primaria);
+}
+
+.formulario .botao {
+    width: 100%;
+    margin-top: var(--espaco-pequeno);
+}
+
+.formulario-aviso {
+    margin: 12px 0 0;
+    color: var(--cor-texto-suave);
+    font-size: 14px;
+}
+
+/* Destaca o aviso depois de simular o envio (#aviso no endereço) */
+.formulario-aviso:target {
+    color: var(--cor-primaria);
+    font-weight: 700;
+}
+
+/* ---------- Rodapé ---------- */
+.rodape {
+    padding-top: 48px;
+    background-color: var(--cor-primaria-escura);
+    color: var(--cor-texto-rodape);
+    text-align: center;
+}
+
+.rodape .logo {
+    font-size: 26px;
+}
+
+.rodape-marca p {
+    margin-top: var(--espaco-pequeno);
+}
+
+.rodape-titulo {
+    margin: var(--espaco-grande) 0 12px;
+    color: var(--cor-branca);
+    font-size: 16px;
+}
+
+.rodape-coluna ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.rodape-coluna li {
+    margin-bottom: 6px;
+}
+
+.rodape-coluna a {
+    color: var(--cor-texto-rodape);
+    text-decoration: none;
+}
+
+.rodape-coluna a:hover {
+    color: var(--cor-destaque);
+    text-decoration: underline;
+}
+
+.rodape-creditos {
+    margin-top: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    font-size: 14px;
+}
+
+.rodape-creditos p {
+    margin: 4px 0;
+}
