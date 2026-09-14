@@ -1,6 +1,8 @@
 /* ==========================================================================
    Lumia - Home-page
    Folha de estilos da página (CSS puro, sem frameworks)
+   Organização mobile first: os estilos base atendem aos celulares e as
+   media queries no final do arquivo adaptam o layout para tablet e desktop.
    ========================================================================== */
 
 /* ---------- Variáveis: padrão de cores, fontes e espaçamentos ---------- */
@@ -99,7 +101,14 @@ img {
 .cabecalho {
     padding: var(--espaco-medio) 0;
     background-color: var(--cor-primaria);
-    text-align: center;
+}
+
+/* Flexbox: no celular, logo e menu ficam centralizados um abaixo do outro */
+.cabecalho-conteudo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--espaco-pequeno);
 }
 
 .logo {
@@ -114,9 +123,15 @@ img {
     color: var(--cor-destaque);
 }
 
+/* Flexbox: os links do menu quebram de linha se faltar espaço */
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px 20px;
+}
+
 .menu a {
-    display: inline-block;
-    margin: var(--espaco-pequeno) 10px 0;
     padding-bottom: 2px;
     border-bottom: 2px solid transparent;
     color: var(--cor-branca);
@@ -130,7 +145,11 @@ img {
 }
 
 /* ---------- Banner principal ---------- */
+/* Grid: no celular, texto e imagem ficam em uma única coluna */
 .banner {
+    display: grid;
+    gap: var(--espaco-grande);
+    align-items: center;
     padding-top: 40px;
     padding-bottom: var(--espaco-secao);
 }
@@ -157,14 +176,17 @@ img {
     font-size: 17px;
 }
 
-.banner-botoes .botao {
-    margin: var(--espaco-pequeno) var(--espaco-pequeno) 0 0;
+/* Flexbox: no celular, os botões ocupam a largura toda, um abaixo do outro */
+.banner-botoes {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: var(--espaco-grande);
 }
 
 .banner-imagem {
     width: 100%;
     height: 280px;
-    margin-top: var(--espaco-grande);
     border-radius: var(--raio);
     object-fit: cover;
     box-shadow: var(--sombra);
@@ -182,6 +204,7 @@ img {
     font-size: 15px;
     font-weight: 600;
     line-height: 1.5;
+    text-align: center;
     text-decoration: none;
     cursor: pointer;
     transition: background-color 0.2s, border-color 0.2s, color 0.2s;
@@ -235,8 +258,14 @@ img {
 }
 
 /* ---------- Cards dos recursos ---------- */
+/* Grid: no celular, os cards ficam em uma única coluna */
+.cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+
 .card {
-    margin-bottom: 24px;
     overflow: hidden;
     border: 1px solid var(--cor-borda);
     border-radius: var(--raio);
@@ -271,8 +300,14 @@ img {
 }
 
 /* ---------- Setores ---------- */
+/* Flexbox: no celular, os setores ficam empilhados */
+.setores {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaco-medio);
+}
+
 .setor {
-    margin-bottom: var(--espaco-medio);
     padding: 24px;
     border-top: 4px solid var(--cor-primaria);
     border-radius: var(--raio);
@@ -305,6 +340,12 @@ img {
 }
 
 /* ---------- Contato e formulário ---------- */
+/* Grid: no celular, o texto fica acima do formulário */
+.contato {
+    display: grid;
+    gap: var(--espaco-medio);
+}
+
 .contato-texto p {
     color: var(--cor-texto-suave);
 }
@@ -364,16 +405,22 @@ img {
     text-align: center;
 }
 
+/* Grid: no celular, as colunas do rodapé ficam empilhadas */
+.rodape-conteudo {
+    display: grid;
+    gap: var(--espaco-grande);
+}
+
 .rodape .logo {
     font-size: 26px;
 }
 
 .rodape-marca p {
-    margin-top: var(--espaco-pequeno);
+    margin: var(--espaco-pequeno) 0 0;
 }
 
 .rodape-titulo {
-    margin: var(--espaco-grande) 0 12px;
+    margin: 0 0 12px;
     color: var(--cor-branca);
     font-size: 16px;
 }
@@ -408,4 +455,127 @@ img {
 
 .rodape-creditos p {
     margin: 4px 0;
+}
+
+/* ==========================================================================
+   Responsividade
+   ========================================================================== */
+
+/* ---------- Tablet: telas a partir de 700px ---------- */
+@media (min-width: 700px) {
+    /* Compensa a altura do cabeçalho fixo ao navegar pelos links do menu */
+    html {
+        scroll-padding-top: 90px;
+    }
+
+    /* Cabeçalho fixo no topo, com o logo à esquerda e o menu à direita */
+    .cabecalho {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    .cabecalho-conteudo {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .menu {
+        gap: 28px;
+    }
+
+    .banner h1 {
+        font-size: 38px;
+    }
+
+    /* Botões do banner lado a lado */
+    .banner-botoes {
+        flex-direction: row;
+    }
+
+    .banner-imagem {
+        height: 340px;
+    }
+
+    /* Cards em duas colunas; o último card ocupa a linha inteira */
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card:last-child {
+        grid-column: 1 / -1;
+    }
+
+    /* Setores lado a lado, com a mesma largura */
+    .setores {
+        flex-direction: row;
+    }
+
+    .setor {
+        flex: 1;
+    }
+
+    /* Rodapé em três colunas */
+    .rodape {
+        text-align: left;
+    }
+
+    .rodape-conteudo {
+        grid-template-columns: 2fr 1fr 1fr;
+    }
+
+    .rodape-creditos {
+        display: flex;
+        justify-content: space-between;
+        gap: var(--espaco-medio);
+    }
+}
+
+/* ---------- Desktop: telas a partir de 1000px ---------- */
+@media (min-width: 1000px) {
+    /* Mais espaço entre as seções e nas laterais */
+    :root {
+        --espaco-secao: 88px;
+        --espaco-lateral: 32px;
+    }
+
+    /* Banner em duas colunas: texto à esquerda e imagem à direita */
+    .banner {
+        grid-template-columns: 1.1fr 1fr;
+        gap: 56px;
+        padding-top: 72px;
+    }
+
+    .banner h1 {
+        font-size: 46px;
+    }
+
+    .banner-imagem {
+        height: 460px;
+    }
+
+    .secao-titulo {
+        font-size: 34px;
+    }
+
+    /* Cards em três colunas */
+    .cards {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+    }
+
+    .card:last-child {
+        grid-column: auto;
+    }
+
+    .card img {
+        height: 210px;
+    }
+
+    /* Contato em duas colunas: texto e formulário */
+    .contato {
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: start;
+    }
 }
