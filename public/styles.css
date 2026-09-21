@@ -1,245 +1,135 @@
 /* ==========================================================================
    Lumia - Home-page
-   Folha de estilos da página (CSS puro, sem frameworks)
-   Organização mobile first: os estilos base atendem aos celulares e as
-   media queries no final do arquivo adaptam o layout para tablet e desktop.
+   Tema visual da página. A RESPONSIVIDADE é feita pelo Bootstrap (grid e
+   classes utilitárias), por isso este arquivo NÃO tem media queries nem
+   flexbox/grid escritos à mão: ele só define as cores, as fontes e alguns
+   detalhes visuais da marca por cima do framework.
    ========================================================================== */
 
-/* ---------- Variáveis: padrão de cores, fontes e espaçamentos ---------- */
+/* ---------- Variáveis: padrão de cores e fontes ---------- */
 :root {
-    /* Cores */
     --cor-primaria: #245c40;
     --cor-primaria-escura: #173d2a;
     --cor-destaque: #c1ed83;
-    --cor-fundo: #f1f5f2;
     --cor-fundo-claro: #e3ede5;
-    --cor-branca: #ffffff;
-    --cor-texto: #26312a;
-    --cor-texto-suave: #56635b;
     --cor-texto-rodape: #cfdcd3;
-    --cor-borda: #d8e2da;
 
-    /* Fontes */
     --fonte-titulo: "Poppins", Arial, sans-serif;
     --fonte-texto: "Open Sans", Arial, sans-serif;
-
-    /* Espaçamentos */
-    --espaco-pequeno: 8px;
-    --espaco-medio: 16px;
-    --espaco-grande: 32px;
-    --espaco-secao: 64px;
-    --espaco-lateral: 20px;
-
-    /* Medidas e efeitos */
-    --largura-maxima: 1120px;
-    --raio: 12px;
-    --sombra: 0 6px 20px rgba(23, 61, 42, 0.08);
 }
 
-/* ---------- Estilo geral ---------- */
-* {
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
+/* Sobrescreve as variáveis do próprio Bootstrap: assim as classes do
+   framework (h1, .card, .btn, .text-secondary...) já saem com o tema Lumia */
 body {
-    margin: 0;
-    font-family: var(--fonte-texto);
-    font-size: 16px;
-    line-height: 1.6;
-    color: var(--cor-texto);
-    background-color: var(--cor-fundo);
+    --bs-body-font-family: var(--fonte-texto);
+    --bs-body-color: #26312a;
+    --bs-body-bg: #f1f5f2;
+    --bs-secondary-color: #56635b;
+    --bs-link-color-rgb: 36, 92, 64;
+    --bs-border-color: #d8e2da;
 }
 
 h1,
 h2,
-h3 {
-    margin: 0 0 var(--espaco-medio);
+h3,
+.logo,
+.btn,
+.navbar-brand {
     font-family: var(--fonte-titulo);
-    line-height: 1.2;
-    color: var(--cor-primaria-escura);
 }
 
-p {
-    margin: 0 0 var(--espaco-medio);
+/* Compensa a altura da navbar fixa (sticky-top) ao navegar pelos links */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
 }
 
-a {
-    color: var(--cor-primaria);
-}
-
-/* Contorno visível para quem navega pelo teclado */
-a:focus-visible,
-button:focus-visible {
-    outline: 3px solid var(--cor-primaria);
-    outline-offset: 3px;
-}
-
-.cabecalho a:focus-visible,
-.rodape a:focus-visible {
-    outline-color: var(--cor-destaque);
-}
-
-img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-}
-
-/* Largura padrão do conteúdo, usada em todas as partes da página */
-.container {
-    width: 100%;
-    max-width: var(--largura-maxima);
-    margin: 0 auto;
-    padding: 0 var(--espaco-lateral);
-}
-
-/* ---------- Cabeçalho e menu ---------- */
-.cabecalho {
-    padding: var(--espaco-medio) 0;
+/* ---------- Cores da marca (complementam as classes bg-* do Bootstrap) ---------- */
+.bg-lumia {
     background-color: var(--cor-primaria);
 }
 
-/* Flexbox: no celular, logo e menu ficam centralizados um abaixo do outro */
-.cabecalho-conteudo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--espaco-pequeno);
+.bg-lumia-escuro {
+    background-color: var(--cor-primaria-escura);
 }
 
+.bg-claro {
+    background-color: var(--cor-fundo-claro);
+}
+
+.bg-destaque {
+    background-color: var(--cor-destaque);
+}
+
+.text-lumia {
+    color: var(--cor-primaria);
+}
+
+.text-lumia-escuro {
+    color: var(--cor-primaria-escura);
+}
+
+.text-claro {
+    color: var(--cor-texto-rodape);
+}
+
+/* ---------- Cabeçalho ---------- */
 .logo {
-    font-family: var(--fonte-titulo);
     font-size: 28px;
     font-weight: 700;
-    color: var(--cor-branca);
-    text-decoration: none;
 }
 
 .logo-ponto {
     color: var(--cor-destaque);
 }
 
-/* Flexbox: os links do menu quebram de linha se faltar espaço */
-.menu {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 4px 20px;
-}
-
-.menu a {
-    padding-bottom: 2px;
-    border-bottom: 2px solid transparent;
-    color: var(--cor-branca);
-    font-weight: 600;
-    text-decoration: none;
-}
-
-.menu a:hover {
-    border-bottom-color: var(--cor-destaque);
-    color: var(--cor-destaque);
-}
-
-/* ---------- Banner principal ---------- */
-/* Grid: no celular, texto e imagem ficam em uma única coluna */
-.banner {
-    display: grid;
-    gap: var(--espaco-grande);
-    align-items: center;
-    padding-top: 40px;
-    padding-bottom: var(--espaco-secao);
-}
-
-.banner-etiqueta {
-    display: inline-block;
-    margin-bottom: var(--espaco-medio);
-    padding: 4px 14px;
-    border-radius: 20px;
-    background-color: var(--cor-fundo-claro);
-    color: var(--cor-primaria);
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-}
-
-.banner h1 {
-    font-size: 32px;
-}
-
-.banner-texto p {
-    color: var(--cor-texto-suave);
-    font-size: 17px;
-}
-
-/* Flexbox: no celular, os botões ocupam a largura toda, um abaixo do outro */
-.banner-botoes {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: var(--espaco-grande);
-}
-
-.banner-imagem {
-    width: 100%;
-    height: 280px;
-    border-radius: var(--raio);
-    object-fit: cover;
-    box-shadow: var(--sombra);
+/* Links do menu mais claros sobre o verde da marca */
+.navbar {
+    --bs-navbar-color: rgba(255, 255, 255, 0.9);
+    --bs-navbar-hover-color: var(--cor-destaque);
+    --bs-navbar-active-color: var(--cor-destaque);
 }
 
 /* ---------- Botões ---------- */
-.botao {
-    display: inline-block;
-    padding: 12px 28px;
-    border: 2px solid var(--cor-primaria);
-    border-radius: 30px;
-    background-color: var(--cor-primaria);
-    color: var(--cor-branca);
-    font-family: var(--fonte-titulo);
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 1.5;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+/* Variações de .btn com as cores da Lumia, no mesmo padrão do Bootstrap */
+.btn-lumia {
+    --bs-btn-color: #ffffff;
+    --bs-btn-bg: var(--cor-primaria);
+    --bs-btn-border-color: var(--cor-primaria);
+    --bs-btn-hover-color: #ffffff;
+    --bs-btn-hover-bg: var(--cor-primaria-escura);
+    --bs-btn-hover-border-color: var(--cor-primaria-escura);
+    --bs-btn-active-bg: var(--cor-primaria-escura);
+    --bs-btn-active-border-color: var(--cor-primaria-escura);
+    --bs-btn-border-radius: 30px;
 }
 
-.botao:hover {
-    border-color: var(--cor-primaria-escura);
-    background-color: var(--cor-primaria-escura);
+.btn-outline-lumia {
+    --bs-btn-color: var(--cor-primaria);
+    --bs-btn-border-color: var(--cor-primaria);
+    --bs-btn-hover-color: #ffffff;
+    --bs-btn-hover-bg: var(--cor-primaria);
+    --bs-btn-hover-border-color: var(--cor-primaria);
+    --bs-btn-active-bg: var(--cor-primaria);
+    --bs-btn-active-border-color: var(--cor-primaria);
+    --bs-btn-border-radius: 30px;
 }
 
-.botao-contorno {
-    background-color: transparent;
-    color: var(--cor-primaria);
+/* ---------- Imagens ---------- */
+/* object-fit mantém o recorte das fotos; a largura fica por conta do
+   .img-fluid e do grid do Bootstrap */
+.imagem-banner {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
 }
 
-.botao-contorno:hover {
-    border-color: var(--cor-primaria);
-    background-color: var(--cor-primaria);
-    color: var(--cor-branca);
+.imagem-card {
+    height: 200px;
+    object-fit: cover;
 }
 
 /* ---------- Seções ---------- */
-.secao {
-    padding: var(--espaco-secao) 0;
-    background-color: var(--cor-branca);
-}
-
-.secao-clara {
-    background-color: var(--cor-fundo-claro);
-}
-
-.secao-titulo {
-    font-size: 28px;
-}
-
 /* Linha decorativa abaixo dos títulos das seções */
 .secao-titulo::after {
     content: "";
@@ -251,331 +141,56 @@ img {
     background-color: var(--cor-primaria);
 }
 
-.secao-descricao {
-    max-width: 640px;
-    margin-bottom: var(--espaco-grande);
-    color: var(--cor-texto-suave);
-}
-
-/* ---------- Cards dos recursos ---------- */
-/* Grid: no celular, os cards ficam em uma única coluna */
-.cards {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 24px;
-}
-
 .card {
-    overflow: hidden;
-    border: 1px solid var(--cor-borda);
-    border-radius: var(--raio);
-    background-color: var(--cor-branca);
-    box-shadow: var(--sombra);
+    --bs-card-bg: #ffffff;
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 28px rgba(23, 61, 42, 0.14);
-}
-
-.card img {
-    width: 100%;
-    height: 190px;
-    object-fit: cover;
-}
-
-.card-conteudo {
-    padding: 20px 24px 24px;
-}
-
-.card h3 {
-    margin-bottom: var(--espaco-pequeno);
-    font-size: 20px;
-}
-
-.card p {
-    margin: 0;
-    color: var(--cor-texto-suave);
+    box-shadow: 0 12px 28px rgba(23, 61, 42, 0.14) !important;
 }
 
 /* ---------- Setores ---------- */
-/* Flexbox: no celular, os setores ficam empilhados */
-.setores {
-    display: flex;
-    flex-direction: column;
-    gap: var(--espaco-medio);
-}
-
-.setor {
-    padding: 24px;
+.borda-superior {
     border-top: 4px solid var(--cor-primaria);
-    border-radius: var(--raio);
-    background-color: var(--cor-branca);
 }
 
 .setor-numero {
-    display: inline-block;
     width: 40px;
     height: 40px;
-    margin-bottom: 12px;
-    border-radius: 50%;
-    background-color: var(--cor-fundo-claro);
-    color: var(--cor-primaria);
-    font-family: var(--fonte-titulo);
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 40px;
-    text-align: center;
-}
-
-.setor h3 {
-    margin-bottom: var(--espaco-pequeno);
-    font-size: 20px;
-}
-
-.setor p {
-    margin: 0;
-    color: var(--cor-texto-suave);
-}
-
-/* ---------- Contato e formulário ---------- */
-/* Grid: no celular, o texto fica acima do formulário */
-.contato {
-    display: grid;
-    gap: var(--espaco-medio);
-}
-
-.contato-texto p {
-    color: var(--cor-texto-suave);
-}
-
-.formulario {
-    padding: 24px;
-    border: 1px solid var(--cor-borda);
-    border-radius: var(--raio);
-    background-color: var(--cor-fundo);
-    box-shadow: var(--sombra);
-}
-
-.formulario label {
-    display: block;
-    margin-bottom: 6px;
-    font-weight: 600;
-}
-
-.formulario input {
-    width: 100%;
-    margin-bottom: var(--espaco-medio);
-    padding: 12px 14px;
-    border: 1px solid #b9c7bd;
-    border-radius: 8px;
-    background-color: var(--cor-branca);
-    color: var(--cor-texto);
-    font: inherit;
-}
-
-.formulario input:focus {
-    border-color: var(--cor-primaria);
-    outline: 2px solid var(--cor-primaria);
-}
-
-.formulario .botao {
-    width: 100%;
-    margin-top: var(--espaco-pequeno);
-}
-
-.formulario-aviso {
-    margin: 12px 0 0;
-    color: var(--cor-texto-suave);
     font-size: 14px;
 }
 
-/* Destaca o aviso depois de simular o envio (#aviso no endereço) */
-.formulario-aviso:target {
+/* ---------- Links ---------- */
+.link-lumia {
     color: var(--cor-primaria);
-    font-weight: 700;
 }
 
-/* ---------- Rodapé ---------- */
-.rodape {
-    padding-top: 48px;
-    background-color: var(--cor-primaria-escura);
-    color: var(--cor-texto-rodape);
-    text-align: center;
-}
-
-/* Grid: no celular, as colunas do rodapé ficam empilhadas */
-.rodape-conteudo {
-    display: grid;
-    gap: var(--espaco-grande);
-}
-
-.rodape .logo {
-    font-size: 26px;
-}
-
-.rodape-marca p {
-    margin: var(--espaco-pequeno) 0 0;
-}
-
-.rodape-titulo {
-    margin: 0 0 12px;
-    color: var(--cor-branca);
-    font-size: 16px;
-}
-
-.rodape-coluna ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.rodape-coluna li {
-    margin-bottom: 6px;
-}
-
-.rodape-coluna a {
+.link-rodape {
     color: var(--cor-texto-rodape);
     text-decoration: none;
 }
 
-.rodape-coluna a:hover {
+.link-rodape:hover {
     color: var(--cor-destaque);
     text-decoration: underline;
 }
 
-.rodape-creditos {
-    margin-top: 40px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
-    font-size: 14px;
+/* Contorno visível para quem navega pelo teclado */
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--cor-primaria);
+    outline-offset: 3px;
 }
 
-.rodape-creditos p {
-    margin: 4px 0;
+.navbar a:focus-visible,
+footer a:focus-visible {
+    outline-color: var(--cor-destaque);
 }
 
-/* ==========================================================================
-   Responsividade
-   ========================================================================== */
-
-/* ---------- Tablet: telas a partir de 700px ---------- */
-@media (min-width: 700px) {
-    /* Compensa a altura do cabeçalho fixo ao navegar pelos links do menu */
-    html {
-        scroll-padding-top: 90px;
-    }
-
-    /* Cabeçalho fixo no topo, com o logo à esquerda e o menu à direita */
-    .cabecalho {
-        position: sticky;
-        top: 0;
-        z-index: 10;
-    }
-
-    .cabecalho-conteudo {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .menu {
-        gap: 28px;
-    }
-
-    .banner h1 {
-        font-size: 38px;
-    }
-
-    /* Botões do banner lado a lado */
-    .banner-botoes {
-        flex-direction: row;
-    }
-
-    .banner-imagem {
-        height: 340px;
-    }
-
-    /* Cards em duas colunas; o último card ocupa a linha inteira */
-    .cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .card:last-child {
-        grid-column: 1 / -1;
-    }
-
-    /* Setores lado a lado, com a mesma largura */
-    .setores {
-        flex-direction: row;
-    }
-
-    .setor {
-        flex: 1;
-    }
-
-    /* Rodapé em três colunas */
-    .rodape {
-        text-align: left;
-    }
-
-    .rodape-conteudo {
-        grid-template-columns: 2fr 1fr 1fr;
-    }
-
-    .rodape-creditos {
-        display: flex;
-        justify-content: space-between;
-        gap: var(--espaco-medio);
-    }
-}
-
-/* ---------- Desktop: telas a partir de 1000px ---------- */
-@media (min-width: 1000px) {
-    /* Mais espaço entre as seções e nas laterais */
-    :root {
-        --espaco-secao: 88px;
-        --espaco-lateral: 32px;
-    }
-
-    /* Banner em duas colunas: texto à esquerda e imagem à direita */
-    .banner {
-        grid-template-columns: 1.1fr 1fr;
-        gap: 56px;
-        padding-top: 72px;
-    }
-
-    .banner h1 {
-        font-size: 46px;
-    }
-
-    .banner-imagem {
-        height: 460px;
-    }
-
-    .secao-titulo {
-        font-size: 34px;
-    }
-
-    /* Cards em três colunas */
-    .cards {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 32px;
-    }
-
-    .card:last-child {
-        grid-column: auto;
-    }
-
-    .card img {
-        height: 210px;
-    }
-
-    /* Contato em duas colunas: texto e formulário */
-    .contato {
-        grid-template-columns: 1fr 1fr;
-        gap: 64px;
-        align-items: start;
-    }
+/* Destaca o aviso depois de simular o envio (#aviso no endereço) */
+#aviso:target {
+    color: var(--cor-primaria) !important;
+    font-weight: 700;
 }
